@@ -612,6 +612,9 @@ class SoundSink(object):
                 al.alSourcePlay(sid)
             queued += 1
 
+        for bufid in freebufs:
+            al.alDeleteBuffers(1, bufid)
+
     def process_listener(self):
         """Processes the SoundListener attached to the SoundSink."""
         props = getattr(self.listener, "changedproperties", [])
